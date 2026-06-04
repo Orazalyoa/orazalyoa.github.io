@@ -133,16 +133,29 @@ a.p-btn-ou:hover{border-color:var(--text3);transform:translateY(-1px)}
 .p-svcs{padding:28px var(--gap);border-bottom:0.5px solid var(--border);background:var(--bg-alt)}
 .p-sec-h{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.5px;color:var(--text);margin-bottom:18px}
 .p-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.p-svc{padding:18px 16px;border:0.5px solid var(--border);border-radius:var(--rad);background:var(--bg);transition:transform 0.2s cubic-bezier(0.16,1,0.3,1),box-shadow 0.2s ease}
-.p-svc:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
-@media(prefers-color-scheme:dark){.p-svc:hover{box-shadow:0 6px 20px rgba(0,0,0,0.4)}}
+.p-svc{padding:18px 16px;border:0.5px solid var(--border);border-radius:var(--rad);background:var(--bg);transition:transform 0.45s cubic-bezier(0.16,1,0.3,1),box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),background 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s ease}
 .p-svc-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.p-svc-nm{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-0.2px;color:var(--text)}
-.p-svc-pr{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--text);text-align:right}
-.p-svc-days{font-size:11px;color:var(--text3);display:block;text-align:right;margin-top:2px}
-.p-svc-tx{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:12px}
+.p-svc-nm{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-0.2px;color:var(--text);transition:color 0.4s cubic-bezier(0.16,1,0.3,1)}
+.p-svc-pr{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--text);text-align:right;transition:color 0.4s cubic-bezier(0.16,1,0.3,1)}
+.p-svc-days{font-size:11px;color:var(--text3);display:block;text-align:right;margin-top:2px;transition:color 0.4s cubic-bezier(0.16,1,0.3,1)}
+.p-svc-tx{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:12px;transition:color 0.4s cubic-bezier(0.16,1,0.3,1)}
 .p-svc-tags{display:flex;flex-wrap:wrap;gap:4px}
-.p-svc-tag{font-size:11px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--border);color:var(--text3)}
+.p-svc-tag{font-size:11px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--border);color:var(--text3);transition:color 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s cubic-bezier(0.16,1,0.3,1)}
+@media(hover:hover){
+  .p-svc:not(.hot):hover{background:#111;border-color:#111;transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.18)}
+  .p-svc:not(.hot):hover .p-svc-nm,.p-svc:not(.hot):hover .p-svc-pr{color:#fff}
+  .p-svc:not(.hot):hover .p-svc-days{color:rgba(255,255,255,0.45)}
+  .p-svc:not(.hot):hover .p-svc-tx{color:rgba(255,255,255,0.65)}
+  .p-svc:not(.hot):hover .p-svc-tag{border-color:rgba(255,255,255,0.18);color:rgba(255,255,255,0.5)}
+  .p-svc.hot:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.28)}
+}
+@media(prefers-color-scheme:dark) and (hover:hover){
+  .p-svc:not(.hot):hover{background:#f0f0f0;border-color:#f0f0f0;box-shadow:0 12px 32px rgba(0,0,0,0.5)}
+  .p-svc:not(.hot):hover .p-svc-nm,.p-svc:not(.hot):hover .p-svc-pr{color:#111}
+  .p-svc:not(.hot):hover .p-svc-days{color:rgba(0,0,0,0.45)}
+  .p-svc:not(.hot):hover .p-svc-tx{color:rgba(0,0,0,0.65)}
+  .p-svc:not(.hot):hover .p-svc-tag{border-color:rgba(0,0,0,0.18);color:rgba(0,0,0,0.5)}
+}
 .p-svc.hot{background:#111;color:#fff;grid-column:span 2;border-color:#111}
 @media(prefers-color-scheme:dark){.p-svc.hot{background:#f0f0f0;color:#111;border-color:#f0f0f0}}
 .p-svc.hot:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.25)}
@@ -310,16 +323,41 @@ a.p-cta-btn.dk{background:var(--text);color:var(--bg);border-color:var(--text)}
 }
 
 /* =====================
+   BURGER + MOBILE MENU
+   ===================== */
+.p-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;flex-shrink:0;cursor:pointer;background:none;border:0.5px solid var(--border);border-radius:8px;padding:0;color:var(--text)}
+.p-burger span{display:block;width:16px;height:1.5px;background:currentColor;border-radius:2px;transition:transform 0.38s cubic-bezier(0.16,1,0.3,1),opacity 0.22s,width 0.22s}
+.p-burger.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.p-burger.on span:nth-child(2){opacity:0;width:0}
+.p-burger.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.p-mmenu{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateY(-16px) scale(0.98);transition:opacity 0.32s ease,transform 0.42s cubic-bezier(0.16,1,0.3,1)}
+.p-mmenu.on{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.p-mmenu-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:0.5px solid var(--border);flex-shrink:0}
+.p-mmenu-head .p-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--text)}
+.p-mmenu-nav{flex:1;display:flex;flex-direction:column;padding:12px 20px;overflow-y:auto}
+.p-mmenu-link{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px;padding:16px 0;border-bottom:0.5px solid var(--border);display:block;transition:opacity 0.18s}
+.p-mmenu-link:last-child{border-bottom:none}
+.p-mmenu-link:active,.p-mmenu-link:focus{opacity:0.5}
+.p-mmenu-foot{padding:20px;border-top:0.5px solid var(--border);flex-shrink:0}
+.p-mmenu-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--text);color:var(--bg);font-size:15px;font-weight:500;padding:16px;border-radius:var(--rad);text-decoration:none;font-family:'DM Sans',sans-serif;transition:opacity 0.2s}
+.p-mmenu-cta:active{opacity:0.8}
+
+/* =====================
    MOBILE
    ===================== */
 @media(max-width:768px){
   .p-nav-links{display:none}
+  a.p-nav-cta{display:none}
+  .p-burger{display:flex}
 }
 @media(max-width:520px){
-  :root{--gap:18px}
-  .p-hero{padding:36px var(--gap) 28px}
-  .p-h1{margin-bottom:20px}
-  .p-hero-btns{flex-direction:row}
+  :root{--gap:20px}
+  .p-hero{padding:64px var(--gap) 56px}
+  .p-hero-top{margin-bottom:36px}
+  .p-h1{margin-bottom:28px}
+  .p-about,.p-svcs,.p-proc,.p-faq,.p-form-wrap,.p-cta{padding:40px var(--gap)}
+  .p-hero-btns{flex-direction:row;gap:10px}
   a.p-btn-dk,a.p-btn-ou{flex:1;justify-content:center;padding:12px 10px;font-size:12px}
   .p-stats{grid-template-columns:1fr 1fr}
   .p-stat:nth-child(1),.p-stat:nth-child(2){border-bottom:0.5px solid var(--border)}
@@ -349,6 +387,9 @@ a.p-cta-btn.dk{background:var(--text);color:var(--bg);border-color:var(--text)}
       <a href="#contact" id="n4">Контакт</a>
     </div>
     <a href="#contact" class="p-nav-cta" id="ncta">Написать →</a>
+    <button class="p-burger" id="burger" onclick="toggleMenu()" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <section class="p-hero" aria-label="Главный экран">
@@ -523,6 +564,27 @@ a.p-cta-btn.dk{background:var(--text);color:var(--bg);border-color:var(--text)}
   </footer>
 </div>
 
+<div class="p-mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Навигация">
+  <div class="p-mmenu-head">
+    <div class="p-logo">Оразалы</div>
+    <button class="p-burger on" onclick="toggleMenu()" aria-label="Закрыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="p-mmenu-nav">
+    <a class="p-mmenu-link" href="#about" onclick="closeMenu()" id="mn1">Обо мне</a>
+    <a class="p-mmenu-link" href="#services" onclick="closeMenu()" id="mn2">Услуги</a>
+    <a class="p-mmenu-link" href="#faq" onclick="closeMenu()" id="mn3">FAQ</a>
+    <a class="p-mmenu-link" href="#contact" onclick="closeMenu()" id="mn4">Контакт</a>
+  </nav>
+  <div class="p-mmenu-foot">
+    <a href="https://t.me/orazalauof" target="_blank" rel="noopener" class="p-mmenu-cta" id="mncta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Написать в Telegram
+    </a>
+  </div>
+</div>
+
 <script>
 const iRu=['Лендинги','Интернет-магазины','Корпоративные сайты','Многостраничники','Сайты-визитки','SEO-оптимизация','Анимации','Адаптивная вёрстка','CRM-интеграции','Онлайн-оплата','Редизайн','Быстрый запуск'];
 const iKz=['Лендингтер','Интернет-дүкендер','Корпоративтік сайттар','Көп беттілер','Визиткалық сайттар','SEO-оңтайландыру','Анимациялар','Адаптивті вёрстка','CRM-интеграциялар','Онлайн-төлем','Қайта дизайн','Жылдам іске қосу'];
@@ -530,6 +592,22 @@ const iKz=['Лендингтер','Интернет-дүкендер','Корп�
 function buildTicker(arr){
   const d=[...arr,...arr];
   document.getElementById('ticker').innerHTML=d.map(i=>`<span class="t-item">${i}</span>`).join('');
+}
+
+function toggleMenu(){
+  const b=document.getElementById('burger');
+  const m=document.getElementById('mmenu');
+  const on=!b.classList.contains('on');
+  b.classList.toggle('on',on);
+  m.classList.toggle('on',on);
+  b.setAttribute('aria-expanded',String(on));
+  document.body.style.overflow=on?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('burger').classList.remove('on');
+  document.getElementById('mmenu').classList.remove('on');
+  document.getElementById('burger').setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
 }
 buildTicker(iRu);
 
@@ -653,6 +731,7 @@ function setLang(l){
   const d=T[l];
   document.querySelectorAll('.p-lang-btn').forEach((b,i)=>b.className='p-lang-btn'+(i===(l==='ru'?0:1)?' on':''));
   ['n1','n2','n3','n4'].forEach((id,i)=>document.getElementById(id).textContent=d.n[i]);
+  ['mn1','mn2','mn3','mn4'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=d.n[i]});
   document.getElementById('ncta').textContent=d.n[4];
   document.getElementById('hloc').textContent=d.loc;
   document.getElementById('htitle').innerHTML=d.title;
